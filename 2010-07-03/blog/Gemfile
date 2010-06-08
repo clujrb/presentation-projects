@@ -1,0 +1,12 @@
+source :rubygems
+
+gem "rails"
+gem "mysql"
+gem "rspec-rails", :require => false
+gem "cucumber-rails", :require => false
+gem "capybara", :require => false
+gem "factory_girl", :require => false
+gem "pickle", :require => false
+gem "database_cleaner", :require => false
+gem "launchy", :require => false
+gem "thin", :require => false
