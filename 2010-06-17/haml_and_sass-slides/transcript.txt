@@ -1,0 +1,113 @@
+SLIDE 4
+
+HAML si SASS sunt 'template languages' folosite pentru a genera HTML si CSS. Pot fi folosite atat impreuna cat si doar unul dintre ele.
+
+
+SLIDE 6
+
+Markup should be beautiful - Mark-up-ul nu trebuie folosit ca o simpla unealta de a face browserele sa arate o pagina asa cum vrea autorul ei. Mark-up-ul trebuie vazut, inteles si usor de modificat, deci mark-up-ul trebuie sa fie la fel de 'user-friendly' ca si rezultatul. 
+    
+Markup should be DRY - HTML inseamna multa repetitie. De exemplu, fiecare element trebuie mentionat de doua ori, inainte si dupa continut. ERB adauga si mai multa repetitie si caractere. HAML evita acestea prin faptul ca se bazeaza pe indentare (si nu pe text) pentru a determina unde incepe si unde se termina un block de cod. Astfel codul scris este mult mai scurt, mai curat si mai placut la vedere
+    
+Markup should be well-indented - Una din marile probleme ale ERB este ca nu incurajeaza scrierea codului bine indentat, ba mai mult face aproape imposibil acest lucru. Aceasta conduce la HTML greu de citit.
+    
+HTML structure should be clear - XML si HTML sunt formate construite pe ideea de document structurat, si aceasta structura este reflectata prin mark-up. Pentru ca HAML se bazeaza pe indentare, aceasta structura este conservata natural, facand un document mult mai usor si mai logic de citit.
+
+
+SLIDE 7
+
+Ca mici dezavantaje, vreau sa mentionez faptul ca HAML este whitespace-active, adica tab-urile sau spatiile folosite pentru indentare trebuie mentinute de-a lungul intregului document. Si un tab nu este acelasi lucru cu 2 spatii.
+
+Nu stiu sa existe nici nu editor WYSIWYG spre deosebire de XHTML sau HTML pentru care sunt destul de multe. Insa exista add-on bundles pentru editoarele si IDE-urile majore ca Eclipse, NetBeans, TextMate, VIM sau Emacs.
+
+Din testele de performanta reiesea (inainte de HAML 3.0) ca este cam de 2 ori mai incet decat ERB. Insa daca se foloseste optiunea :ugly, se obtine aceeasi performanta ca si pentru ERB. Folosind optiunea :ugly, HAML nu va indenta HTML-ul rezultat, deci poate fi folosit cu incredere in production, pentru ca nu cred ca multa lume se uita la codul sursa al unei pagini web.
+
+
+SLIDE 8
+
+Un mic exemplu de HAML
+
+Tag-urile HTML incep cu "%", apoi numele elementului, eventual alte atribute, si continutul elementului. Tag-urile nu trebuie inchise, HAML se ocupa de aceasta problema. Dupa cum vedeti in acest mic exemplu, HTML-ul generat, este curat, indentat, cu toate elementele inchise corect.
+
+
+SLIDE 9
+
+Pentru a pasa atribute unui tag se foloseste un HASH. Mai mult, folosind "#" dupa numele unui tag se specifica direct ID-ul elementului, iar folosind "." se specifica clasa unui element. Cele trei exemple sunt echivalente, dar in ultimul ai cel mai putin de scris.
+
+
+SLIDE 10
+
+Pentru a evalua o expresie RUBY si a o pune pe pagina, se foloseste "=". Exact ca si in ERB, dar fara caractere in plus. La fel pentru a evalua o expresie Ruby al carei rezultat nu apare pe pagina. Aveti un exemplu simplu de cum se folosesc cele doua caractere pentru a prezenta o lista simpla. Cu liniuta se interpreteaza iterarea, cu egal se printeaza rezultatul. Simplu!
+
+
+SLIDE 11
+
+Doctype-ul se exprima folosind semnele de exclamare.
+
+Daca doriti sa impartiti codul pe mai multe linii, se poate, folosind pipes.
+
+Caracterul ":" desemneaza un filtru. Aceasta permite sa pasezi un block de text pentru un alt mod de filtrare, de exemplu JS, Markdown sau chiar ERB.
+
+
+SLIDE 12
+
+Nu mai insist, vreau doar sa subliniez inca o data avantajele HAML fata de ERB. Vedeti din exemplu, cod mai simplu, mai scurt, mai usor si mai rapid de scris, deci mai putina munca petrecuta scriind HTML si mai multa implementand chestii interesante in RAILS.
+
+Nu sunt eu in masura sa subliniez care sunt "best practices" pentru a scrie HTML sau CSS sau Rails, dar este destul de clar ca template-urile de prezentare (view-urile) nu trebuie sa contina business logic. HAML descurajeaza subtil aceste practici. Daca nu poti exprima usor un bloc de cod in HAML inseamna ca e nevoie sa mai muti din logica in modele, sau helpers. Si asta ajuta si pe termen lung, cand o sa se puna problema de refactoring, sau adaugat features noi.
+
+
+SLIDE 14
+
+SASS face din CSS o experienta placuta, prin sintaxa simpla si eleganta si mai ales prin cateva features foarte folositoare cum ar fi varibile sau mixins.
+
+
+SLIDE 15
+
+Un exemplu simplu de SASS. Primul block de cod este scris in CSS. Cele de jos in SASS. Nu prea sunt diferente, doar ca in SASS nu e nevoie de acolade sau punct si virgula dupa fiecare statement. Insa e nevoie ca aceste instructiuni sa fie indentate sub selectorul caruia se aplica si sa fie pe linii separate. Avem 2 moduri de sintaxa, cu cele 2 puncte inainte sau dupa proprietatile CSS.
+
+
+SLIDE 16
+
+Partea interesanta intervine in momentul in care instructiunile se 'nest'. De cele mai multe ori, vor fi cativa selectori ca o sa se repete, In exemplu avem "ul#nav", "ul#nav li" si "ul#nav li a", si este destul de rau sa-i tot repeti, mai ales cand devin mai lungi. SASS evita aceasta, permitand sa 'nest', 'scope' selectori copii in selectorul parinte.
+
+
+SLIDE 17
+
+Mai mult, se pot nest chiar si proprietatile css ca sa nu fie nevoie sa tot repetam “border-left-”.
+
+
+SLIDE 18
+Poate doriti sa aplicati stiluri speciale pentru cand un selector are o anumita clasa. In acest caz, folosind ampersand, se specifica parintele selector care sa fie inserat.
+
+
+SLIDE 19
+Aceasi abordare, de data aceasta insa parintele este elementul cu clasa "black"
+
+
+SLIDE 20
+
+SASS introduce un feature care mi l-am dorit dintotdeauna in CSS - variabile. Se declara cu "!" si pot fi folosite de-a lungul documentului. E destul de clar la ce sunt bune variabilele, dar mie imi plac de obicei pentru a tine valorile culorilor, ca nu e usor sa tii minte colurile in HEX. Si in plus, daca se schimba culoarea unui link pentru tot site-ul ai de modificat intr-un singur loc.
+
+Aceste variabile ofera suport pentru operatii. Se pot face adunari, cum vedeti in exemplu, scaderi, inmultiri, impartiri, modulo, sau operatii logice. Foarte folositor.
+
+
+SLIDE 21 & 22
+
+Folosind mixins se pot defini stiluri care pot fi refolosite de-a lungul documentului, fara a fi nevoie sa adaugam clase nesemantice de exemplu care doar incarca HTML-ul. Avantajele mixins sunt destul de clare, code reuse, stilurile sunt DRY. Si mai mult pot primi argumente, astfel cu putine mixins se pot construi o varietate de stiluri
+
+Oricine scrie destul HTML si CSS intra intr-o rutina in care trebuie sa schimbe contextul, de la stylesheet si html si inapoi. Aceasta poate cauza mici intarzieri. Dar folosind HAML si SASS codul este aproape identic in structura. Vrei un div class "black", scrii .black  in HAML, ii adaugi stiluri cu .black in SASS, si nu mai ai nevoie nici de acolade, care nu exista in HTML
+
+
+SLIDE 25
+
+O data cu SASS 3.0 a aparut si SCSS. Este total compatibil cu sintaxa CSS3, pastrand in acelasi timp puterea SASS, varibile, operatii, mixins etc. Pentru cei familiarizati cu SASS trecerea la SCSS este simpla. Nu s-a schimbat nimic, decat ca acum este nevoide ";" si acolade in loc de linii separate si indentare. De ce se trece inapoi la sintaxa cu acolade si punct-virgula... Dezvoltatorii SASS si-au dat seama ca folosind sintaxa SASS (desi sunt multi carora le place) SASS nu va ajunge mainstrean.
+
+
+SLIDE 26
+
+Ca o mica cireasa. Cred ca toti de aici folosim Firebug. Acum avem si Firesass, o Extensie pentru Firebug, care ne arata linia pe care se gaseste instructiunea in fisierul SASS in loc de fisierul CSS generat. Un add-on destul de folositor, cand ai un singur fisier CSS generat cu cateva mii de linii, si vreo 10-15 sass partials. FireSASS poate fi folosit doar de la versiunea SASS 3.0 in sus, si pentru a-l folosi trebuie activata optiunea :debug_info.
+
+
+SLIDE 27
+
+Din ce am citit, desi nu le-am folosit vreodata, se pare ca HAML a fost portat si este folosit cu success si in alte limbaje. Destul de multe implementari si destul de multe limbaje, dar avand in vedere ca a fost lansat prima oara in mai 2006, HAML este deja o platforma matura si stabila, numai buna de folosit in production.
