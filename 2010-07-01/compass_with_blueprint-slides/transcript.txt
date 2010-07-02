@@ -1,0 +1,49 @@
+SLIDE 2
+
+Am vorbit data trecuta despre SASS, dar vreau sa fac o scurta recapitulare. Chiar daca ati fost si data trecuta, aum ca s-au sink-in informatiile o sa va placa mai mult SASS. SASS e mind-blowing pentru un designer, daca reuseste sa-i inteleaga puterea. Sau cel putin pentru mine a fost.
+
+Deci, SASS, cel mai simplu mod de a-l defini - este un 'template language' folosit pentru a genera CSS. Partea buna e ca ofera mult mai mult. 
+
+
+SLIDE 3
+
+Nested selectors. In loc sa repetam de fiecare data selectorii, SASS ne permite sa 'nest', 'scope' selectori copii in selectorul parinte.
+
+
+SLIDE 4
+
+Variabile, fac exact ce face o variabila in orice alt limbaj de programare, tine o valoare. Si sunt foarte utile. Puteti defini paleta de culori, marimea font-urilor folosite si altele. Cel mai idiot exemplu...
+
+
+SLIDE 5 & 6
+
+Folosind mixins se pot defini stiluri care pot fi refolosite de-a lungul documentului, fara a fi nevoie sa adaugam clase nesemantice de exemplu care doar incarca HTML-ul. Avantajele mixins sunt destul de clare, code reuse, stilurile sunt DRY. Si mai mult pot primi argumente, astfel cu putine mixins se pot construi o varietate de stiluri
+
+
+SLIDE 7
+
+Un framework CSS poate fi vazut ca o librarie de stiluri predefinite, construita pentru a ne permite sa adaugam stiluri paginilor web mult mai usor si rapid.
+
+Eu am vazut si folosit pana acum YUI de la Yahoo (de fapt cu asta am inceput), Blueprint si 960. Exista multe altele, YAML, Susy de exemplu. Nu le-am vazut, doar am auzit de ele. Mie personal cel mai mult imi place combinatia de Blueprint cu Compass Core si YUI Fonts.
+
+
+SLIDE 8
+
+Dintre plusuri as aminti faptul ca de obicei ofera compatibilitate cross-browser, si contin destul de putine erori. Apoi, contin cea mai mare parte a codului CSS de care o sa avem nevoie. Si cel mai important, putem invata dintr-un framework, pentru ca in general au fost facute de unii dintre cei mai buni designeri si daca sunt si open source, o gramada de ochi le-au vazut si imbunatatit.
+
+
+SLIDE 9
+
+Printre minusuri. Ziceam ca de obicei contin cea mai mare parte a codului CSS de care o sa avem nevoie. Problema e ca totusi, va fi mult CSS care nu o sa-l folosim probabil niciodata. Apoi, e nevoie de un pic de timp sa stapanesti un framework CSS si scoti ce are mai bun din el. Iar cel mai mare dezavantaj este ca ne obliga sa adaugam clase nesemantice, sa incarcam astfel mark-up-ul si mai mult, stilurile devin astfel cuplate cu mark-up-ul, in loc sa avem o separare clara.
+
+
+SLIDE 10
+
+Blueprint - CSS framework - care incearca sa reduca timpul de dezvoltare, prin faptul ca ofera o fundatie solida pe care ne putem construi proiectul. Are stiluri de RESET, pentru a elimina diferentele dintre browsere. Un sistem de grids pentru a construi layout-uri extrem de complexe. Are stiluri pentru formulare, stiluri pentru a putea lista o pagina web. Ofera plugins pentru butoane, tab-uri, css sprites. E un framework CSS complet, si o sa-l vedeti la munca in cateva minute.
+
+
+SLIDE 11
+
+Sa presupunem ca am adoptat SASS, si suntem deja familiarizati cu unele dintre frameworkurile CSS ca si Blueprint sau YUI. Cel mai mare avantaj al Compass este abilitatea de a integra oricare si oricate dintre frameworks si tehnici. Mie imi place combinatia de Blueprint pentru Grids, Compass Core, pentru cateva mixins foarte utile si YUI fonts.
+
+Si celelat mare avantaj este ca ne permite sa nu cuplam stilurile cu html-ul. Ceea ce inseamna stiluri mai usor de intretinut si de modificat.

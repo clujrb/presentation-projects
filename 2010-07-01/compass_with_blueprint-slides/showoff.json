@@ -1,0 +1,10 @@
+{ 
+  "name": "Compass si Blueprint", 
+  "sections": [ 
+    {"section":"title"},
+    {"section":"intro"},
+    {"section":"blueprint"},
+    {"section":"compass"},
+    {"section":"exit"}
+  ]
+}

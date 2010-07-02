@@ -1,0 +1,55 @@
+#container
+  +container
+#hd
+  h1
+    font-size: 25px
+    margin-bottom: 10px
+  ul
+    +horizontal-list
+    margin: 10px 0
+    li
+      background-color: #000
+      padding: 5px 10px
+      &:first-child
+        +border-top-left-radius
+        +border-bottom-left-radius
+        padding-left: 10px
+      &:last-child
+        +border-top-right-radius
+        +border-bottom-right-radius
+        padding-right: 10px
+      a
+        color: #FFF
+        &:hover
+          +text-shadow(#FFFFFF)
+#bd
+  #banner
+    border:
+      top: 1px solid #DDD
+      bottom: 1px solid #DDD
+    +boxed
+    .ad-box
+      +column(7)
+      +colborder(#000)
+      &:last-child
+        +last
+        border-right: none
+  #main
+    +boxed
+    #content
+      +column(15)
+      +colborder(#000)
+    #sidebar
+      +column(8, true)
+    #content, #sidebar
+      p
+        margin-bottom: 10px
+#ft
+  +boxed
+  p
+    +float-left
+  ul
+    +float-right
+    +horizontal-list
+    a
+      +link-colors(#FF0000, #00FFFF, #0000FF)
