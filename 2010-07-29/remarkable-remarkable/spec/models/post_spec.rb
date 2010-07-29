@@ -1,14 +1,8 @@
 require 'spec_helper'
 
 describe Post do
-  before(:each) do
-    @valid_attributes = {
-      :title => "value for title",
-      :post => "value for post"
-    }
-  end
-
-  it "should create a new instance given valid attributes" do
-    Post.create!(@valid_attributes)
-  end
+  it { should have_column :title, :type => :string }
+  it { should have_index :author_id }
+  it { should validate_presence_of :title }
+  it { should belong_to :author }
 end

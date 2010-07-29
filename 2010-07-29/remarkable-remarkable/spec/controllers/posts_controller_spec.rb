@@ -4,9 +4,8 @@ describe PostsController do
   mock_models :post
     
   describe :get => :index do
-    expects :find,
+    expects :all,
       :on      => Post,
-      :with    => :all,
       :returns => posts_proc
     
     context Mime::HTML do
@@ -20,7 +19,7 @@ describe PostsController do
         :body         => proc { [mock_post].to_xml }
     end
   end
-  
+
   describe :get => :show, :id => "37" do
     expects :find,
       :on      => Post,

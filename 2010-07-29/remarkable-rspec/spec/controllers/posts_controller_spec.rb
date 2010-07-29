@@ -1,16 +1,45 @@
 require 'spec_helper'
 
 describe PostsController do
-
   def mock_post(stubs={})
-    @mock_post ||= mock_model(Post, stubs)
+    @mock_post ||= mock_model(Post, {
+      :to_xml => "XML"
+    }.merge(stubs))
   end
 
   describe "GET index" do
-    it "assigns all posts as @posts" do
-      Post.stub(:find).with(:all).and_return([mock_post])
-      get :index
-      assigns[:posts].should == [mock_post]
+    before(:each) do
+      @posts = [mock_post]
+      Post.stub(:all).and_return([mock_post])
+    end
+    
+    context "responding to HTML" do
+      def do_get
+        get :index
+      end
+
+      it "assigns all posts as @posts" do
+        Post.should_receive(:all).and_return(@posts)
+        do_get
+        assigns[:posts].should == @posts
+      end
+
+      it "renders the index template" do
+        do_get
+        response.should render_template(:index)
+      end
+    end
+    
+    context "responding to XML" do
+      def do_get
+        request.env["HTTP_ACCEPT"] = "application/xml"
+        get :index
+      end
+
+      it "renders the @posts XML" do
+        do_get
+        response.body.should == [mock_post].to_xml
+      end
     end
   end
 

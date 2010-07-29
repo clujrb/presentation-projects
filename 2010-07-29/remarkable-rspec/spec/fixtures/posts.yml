@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer         not null, primary key
+#  title      :string(255)
+#  post       :text
+#  created_at :datetime
+#  updated_at :datetime
+#  author_id  :integer         indexed
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
