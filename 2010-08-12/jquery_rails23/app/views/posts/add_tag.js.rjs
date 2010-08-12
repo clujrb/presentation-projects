@@ -1,0 +1,2 @@
+# app/views/posts/add_tag.js.rjs
+page.insert_html :bottom, "tags", :partial => "tags/tag", :object => @tag

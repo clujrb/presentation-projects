@@ -1,0 +1,19 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    
+    <!-- app/layouts/application.html.erb -->
+    <meta name="csrf-token" content="<%= form_authenticity_token %>" />
+    <meta name="csrf-param" content="authenticity_token" />
+    
+    <%= javascript_include_tag "prototype", "jquery-1.4.1.min", "rails", "application" %>
+    
+    <%= stylesheet_link_tag 'scaffold', 'application' %>
+  </head>
+  
+  <body>
+    <p style="color: green"><%= notice %></p>
+    <%= yield %>
+  </body>
+</html>

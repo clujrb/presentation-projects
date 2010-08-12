@@ -1,0 +1,8 @@
+source :rubygems
+
+gem "rails", "~> 2.3.8"
+gem "sqlite3-ruby", :require => "sqlite3"
+
+group :development do
+  gem "mongrel", :require => false
+end

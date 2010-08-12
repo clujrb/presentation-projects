@@ -1,0 +1,9 @@
+  
+  <!-- app/views/tags/_tag.html.erb -->
+  <div class="tag">
+    <% fields_for "post[tag_attributes][]", tag do |tag_form| %>
+      Tag: <%= tag_form.text_field :title %>
+    <% end -%>
+  </div>
+
+

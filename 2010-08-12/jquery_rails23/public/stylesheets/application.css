@@ -1,0 +1,12 @@
+#greeting {
+  border: 2px solid green;
+}
+
+#complex_greeting {
+  border: 2px solid blue;
+}
+
+#greeting, #complex_greeting {
+  margin: 10px;
+  width: 200px;
+}

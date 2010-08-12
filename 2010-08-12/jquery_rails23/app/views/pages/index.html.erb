@@ -1,0 +1,10 @@
+<!-- app/views/pages/index.html.erb -->
+<%=
+  link_to "Click to update greetings",
+    "/pages/hello",
+    :"data-json-update" => true
+%>
+
+<div id="greeting">Greeting</div>
+<div id="complex_greeting">Complex greeting.</div>
+
