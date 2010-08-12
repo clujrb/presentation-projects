@@ -1,0 +1,10 @@
+{ 
+  "name": "Hashie, Configliere si Highline", 
+  "sections": [ 
+    {"section":"title"},
+    {"section":"hashie"},
+    {"section":"configliere"},
+    {"section":"highline"},
+    {"section":"exit"}
+  ]
+}
