@@ -4,7 +4,7 @@ Hashie este o colectie, in crestere, de unelte extrem de folositoare care extind
 
 SLIDE 3
 
-Un Mash este un Hash care se comporta ca un object..... Foloseste notatia cu punct din Ruby, si este folositor in multe cazuri. Eu l-am folosit cu pentru a imbraca un Hash parsat din XML
+Un Mash este un Hash. Foloseste notatia cu punct din Ruby, si este folositor in multe cazuri. Eu l-am folosit cu success pentru a imbraca un Hash parsat din XML.
 
 SLIDE 4
 
@@ -28,29 +28,29 @@ Hashie::Trash, este de fapt un Dash, care ne permite sa 'traducem' cheile la ini
 
 SLIDE 10
 
-Hashie::Clash, Chainable Lazy Hash, ne ofera posibilitatea de a construi usor hash-uri complexe folosind 'the method notatil chaining'. Ofera o functionalitate asemanatoare cu chaining named_scopes in Rails.
+Hashie::Clash, Chainable Lazy Hash, ne ofera posibilitatea de a construi usor hash-uri complexe folosind 'the method notation chaining'. Ofera o functionalitate asemanatoare cu chaining named_scopes in Rails.
 
 SLIDE 12
 
-Mai sunt cateva chestii care nu le-am zis, de exemplu bang methods, va las sa le vedeti singuri. Cum ziceam, e gem, gasiti codul sursa si documentatie pe github si ceva documentatie pe blogul celor de intridea
+Mai sunt cateva chestii pe care nu le-am zis, de exemplu bang methods, va las sa le vedeti singuri. Cum ziceam, e gem, gasiti codul sursa si documentatie pe github si ceva documentatie pe blogul celor de intridea
 
 SLIDE 13
 
-Deci, avem un script, care sigur are ceva settings. Unele pentru un modul, altele pentru alt modul. Cele mai multe nu se schimba, decat pe laptop, sau in production, sau in testing.. Configliere poate administra settings din mai multe surse, fisiere de configurare, argumente din linie de comanda, variable de environment si altele. Nu trebuie nimic predefinit, dar Configliere stie sa valideze, sa type convert, sa descrie toate setarile independent
+Deci, avem un script, care sigur are ceva settings. Unele pentru un modul, altele pentru alt modul. Cele mai multe nu se schimba, decat pe laptop, sau in production, sau in testing.. Configliere poate administra settings din mai multe surse, fisiere de configurare, argumente din linie de comanda, variable de environment si altele. Nu trebuie nimic predefinit, dar Configliere stie sa valideze, sa type convert sau sa descrie toate setarile
 
 SLIDE 14
 Settings in Configliere sunt de fapt un simplu hash. Vedeti un exemplu simplu. In primul rand trebuie sa-i specificm ce fel de configuratii o sa folosim. Facem asta cu Settings.use. Apoi adaugam ceva setari, si la final le resolve.
 
 SLIDE 15
 
-Putem, simplu sa citim un fisier de configurare. Settings.read fisierul, Settings.resolve, si atat. Avem Settingsin proiect.
+Putem, simplu sa citim un fisier de configurare. Settings.read fisierul, Settings.resolve, si atat. Avem Settings in proiect.
 
 SLIDE 16
 Daca specificam ca o sa avem settings din linie de comanda, toate argumentele care le primim de la utilizator le vom avea in Settings. Si avem parametri de genul parametru-valoare, sau parametri booleani. Ce nu avem sunt short parameters
 
 SLIDE 17
 
-Ziceam ca nu e nevoie sa predefinim nimic, dar asta nu inseamna ca nu putem. Cand definim un settings putem sa ii specificam tipul pentru a converti parametrul in form de care avem nevoie. Putem sa ii adaugam o descriere, care se va vedea in help, in linia de comanda de exemplu. Putem sa specificam faptul ca este required, sau criptat
+Ziceam ca nu e nevoie sa predefinim nimic, dar asta nu inseamna ca nu putem. Cand definim un setting putem sa ii specificam tipul pentru a converti parametrul in form de care avem nevoie. Putem sa ii adaugam o descriere, care se va vedea in help, in linia de comanda de exemplu. Putem sa specificam faptul ca este required, sau criptat
 
 SLIDE 18
 
@@ -66,7 +66,7 @@ Highline ofera suport pentru output ERb. Statementul este procesat ca un templat
 
 SLIDE 21
 
-Metoda 'ask' este interfata prima cu utilizatorul. Trebuie doar sa furnizam intrebarea, eventual tipul de raspuns care il asteptam si un block de cod pentru a specifica cum vrem sa handle raspunsul. Putem de asemenea sa validam raspunsul. In ultimul exemplu am folosit 'agree' care este un shortcut pentru 'ask' care accepta doar 'yes' si 'no' (sau y si n) ca raspunsuri.
+Metoda 'ask' este interfata primara cu utilizatorul. Trebuie doar sa furnizam intrebarea, eventual tipul de raspuns care il asteptam si un block de cod pentru a specifica cum vrem sa handle raspunsul. Putem de asemenea sa validam raspunsul. In ultimul exemplu am folosit 'agree' care este un shortcut pentru 'ask' care accepta doar 'yes' si 'no' (sau y si n) ca raspunsuri.
 
 SLIDE 22
 
@@ -76,4 +76,3 @@ SLIDE 23
 
 Disponibil ca si gem, gasiti documentatie si exemple pe github si rubyforge.org
 
-SLIDE 24

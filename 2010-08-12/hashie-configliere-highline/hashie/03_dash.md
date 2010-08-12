@@ -3,7 +3,7 @@
 # Hashie::Dash
 
 * set de proprietati predefinite
-* doar aceste proprietato pot fi definite pe hash
+* doar aceste proprietati pot fi definite pe hash
 * se pot seta valori default pentru fiecare proprietate
 
 !SLIDE code transition=fade
@@ -18,15 +18,15 @@
     end
 
     person = Person.new
-    person.name                 # => nil
-    p.email = 'stan@example.com'
-    p.email                     # => 'stan@example.com'
-    p.occupation                # => 'kid'
-    p[:some_other_property]     # => NoMethodError
+    person.name             # => nil
+    person.email = 'stan@example.com'
+    person.email            # => 'stan@example.com'
+    person.occupation       # => 'kid'
+    p[:some_other_property] # => NoMethodError
 
     person = Person.new(:name => "Eric")
-    person.name                 # => 'Eric'
-    p.occupation                # => 'kid'
+    person.name             # => 'Eric'
+    person.occupation       # => 'kid'
 
 !SLIDE code transition=fade
 

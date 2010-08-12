@@ -16,7 +16,7 @@
     Settings.use :config_file, :commandline, :define
 
     Settings({
-      :eta => '1955-11-05',
+      :eta => '2010-08-12',
       :fluxcapacitor => {
         :speed => 88
         }
@@ -24,3 +24,5 @@
     Settings.read('/etc/time_machine.yaml')
     
     Settings.resolve!
+    
+    Settings['eta'] # => '2010-08-12

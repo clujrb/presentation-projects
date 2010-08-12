@@ -7,7 +7,7 @@
     Settings.use :commandline
     Settings.resolve!
     
-    ruby time_machine --eta=1985-11-05
+    ruby time_machine --eta=2010-08-12
     
     Settings[:eta]    # => '2010-08-12'
   

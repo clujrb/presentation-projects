@@ -14,12 +14,11 @@
 
     @@@ruby
     mash = Hashie::Mash.new
-    mash.name? # => false
-    mash.name # => nil
+    mash.name?              # => false
+    mash.name               # => nil
     mash.name = "My Mash"
-    mash.name # => "My Mash"
-    mash.name? # => true
-    mash.inspect # => <Hashie::Mash name="My Mash">
+    mash.name               # => "My Mash"
+    mash.name?              # => true
 
 !SLIDE code transition=fade
 
