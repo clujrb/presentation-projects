@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>SorterExample</title>
+    <link rel="stylesheet" href="css/blueprint.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="src/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="src/Sorter.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      jQuery(document).ready(function($) {
+        $("th.sortable").click(function(){
+          sortableInvoiceTable(this).sort();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <table class="invoiceTable">
+        <tbody>
+          <tr class="head">
+            <th data-type="string" data-ref="status" class="status sortable first">Status</th>
+            <th data-type="string" data-ref="date" class="sortable date">Invoice Date</th>
+            <th data-type="string" data-ref="invoice-id" class="invoice-id sortable">ID</th>
+            <th data-type="string" data-ref="org" class="org sortable">Client Name</th>
+            <th name="amount_paid" data-type="number" data-ref="amount_paid" class="amount sortable">Amount Paid</th>
+            <th style="display: none;" name="tax_total" class="amount last">Sales Tax</th>
+            <th name="invoice_total" data-type="number" data-ref="invoice_total" class="amount sortable last">
+              <div>
+                Invoice Total
+              </div>
+            </th>
+            <th style="display: none;" name="amount_due" data-type="number" data-ref="amount_due" class="amount sortable last">
+              <div class="switch-total">
+                <a href="#" class="show-total">
+                  <span>Toggle to Invoice Total</span>
+                </a>
+                <a href="#" class="show-due">
+                  <span>Toggle to Amount Due</span>
+                </a>
+              </div>
+              <div>
+                Amount Due
+              </div>
+            </th>
+            </tr><tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-09-10" class="date">10 Sep 2010</td>
+              <td data-value="e6" class="invoice-id"><a title="Invoice e6" alt="e6" href="javascript:void(0)">e6</a></td>
+              <td data-value="ACME and Company Incorporated Really Really long Name" class="org">ACME and Company Incorporated Really Really long Name</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$123.21</td>
+              <td name="invoice_total" data-value="1547.11" class="invoice_total amount">$1,547.11</td>
+              <td style="display: none;" name="amount_due" data-value="1547.11" class="amount_due amount">$1,547.11</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-24" class="date">24 Aug 2010</td>
+              <td data-value="4060-test-1-d-2" class="invoice-id"><a title="Invoice 4060-test-1-d-2" alt="4060-test-1-d-2" href="javascript:void(0)">4060-test-1-d-2</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="10.0" class="invoice_total amount">$10.00</td>
+              <td style="display: none;" name="amount_due" data-value="10.0" class="amount_due amount">$10.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-24" class="date">24 Aug 2010</td>
+              <td data-value="4060-test-1-d-1" class="invoice-id"><a title="Invoice 4060-test-1-d-1" alt="4060-test-1-d-1" href="javascript:void(0)">4060-test-1-d-1</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="10.0" class="invoice_total amount">$10.00</td>
+              <td style="display: none;" name="amount_due" data-value="10.0" class="amount_due amount">$10.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-08-24" class="date">24 Aug 2010</td>
+              <td data-value="4060-test-1" class="invoice-id"><a title="Invoice 4060-test-1" alt="4060-test-1" href="javascript:void(0)">4060-test-1</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="10.0" class="invoice_total amount">$10.00</td>
+              <td style="display: none;" name="amount_due" data-value="10.0" class="amount_due amount">$10.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-17" class="date">17 Aug 2010</td>
+              <td data-value="45dd23" class="invoice-id"><a title="Invoice 45dd23" alt="45dd23" href="javascript:void(0)">45dd23</a></td>
+              <td data-value="No People" class="org">No People</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="50.0" class="invoice_total amount">$50.00</td>
+              <td style="display: none;" name="amount_due" data-value="50.0" class="amount_due amount">$50.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-08-09" class="date">09 Aug 2010</td>
+              <td data-value="B-20100806" class="invoice-id"><a title="Invoice B-20100806" alt="B-20100806" href="javascript:void(0)">B-20100806</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="3080.0" class="invoice_total amount">$3,080.00</td>
+              <td style="display: none;" name="amount_due" data-value="3080.0" class="amount_due amount">$3,080.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-08-05" class="date">05 Aug 2010</td>
+              <td data-value="GOGOL" class="invoice-id"><a title="Invoice GOGOL" alt="GOGOL" href="javascript:void(0)">GOGOL</a></td>
+              <td data-value="ACME and Company Incorporated Really Really long Name" class="org">ACME and Company Incorporated Really Really long Name</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="1425.0" class="invoice_total amount">$1,425.00</td>
+              <td style="display: none;" name="amount_due" data-value="1425.0" class="amount_due amount">$1,425.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-02" class="date">02 Aug 2010</td>
+              <td data-value="678" class="invoice-id"><a title="Invoice 678" alt="678" href="javascript:void(0)">678</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$22.03</td>
+              <td name="invoice_total" data-value="113.83" class="invoice_total amount">$113.83</td>
+              <td style="display: none;" name="amount_due" data-value="113.83" class="amount_due amount">$113.83</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-02" class="date">02 Aug 2010</td>
+              <td data-value="456" class="invoice-id"><a title="Invoice 456" alt="456" href="javascript:void(0)">456</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="100.0" class="invoice_total amount">$100.00</td>
+              <td style="display: none;" name="amount_due" data-value="100.0" class="amount_due amount">$100.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-02" class="date">02 Aug 2010</td>
+              <td data-value="1234" class="invoice-id"><a title="Invoice 1234" alt="1234" href="javascript:void(0)">1234</a></td>
+              <td data-value="FooBarBaz Inc." class="org">FooBarBaz Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="100.0" class="invoice_total amount">$100.00</td>
+              <td style="display: none;" name="amount_due" data-value="100.0" class="amount_due amount">$100.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-08-02" class="date">02 Aug 2010</td>
+              <td data-value="123" class="invoice-id"><a title="Invoice 123" alt="123" href="javascript:void(0)">123</a></td>
+              <td data-value="FooBarBaz Inc." class="org">FooBarBaz Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="100.0" class="invoice_total amount">$100.00</td>
+              <td style="display: none;" name="amount_due" data-value="100.0" class="amount_due amount">$100.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-07-28" class="date">28 Jul 2010</td>
+              <td data-value="6745" class="invoice-id"><a title="Invoice 6745" alt="6745" href="javascript:void(0)">6745</a></td>
+              <td data-value="ACME and Company Incorporated Really Really long Name" class="org">ACME and Company Incorporated Really Really long Name</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="100.0" class="invoice_total amount">$100.00</td>
+              <td style="display: none;" name="amount_due" data-value="100.0" class="amount_due amount">$100.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-07-24" class="date">24 Jul 2010</td>
+              <td data-value="good" class="invoice-id"><a title="Invoice good" alt="good" href="javascript:void(0)">good</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="100.0" class="invoice_total amount">$100.00</td>
+              <td style="display: none;" name="amount_due" data-value="100.0" class="amount_due amount">$100.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-07-22" class="date">22 Jul 2010</td>
+              <td data-value="GONE-1" class="invoice-id"><a title="Invoice GONE-1" alt="GONE-1" href="javascript:void(0)">GONE-1</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$480.00</td>
+              <td name="invoice_total" data-value="2500.0" class="invoice_total amount">$2,500.00</td>
+              <td style="display: none;" name="amount_due" data-value="2500.0" class="amount_due amount">$2,500.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-07-13" class="date">13 Jul 2010</td>
+              <td data-value="444" class="invoice-id"><a title="Invoice 444" alt="444" href="javascript:void(0)">444</a></td>
+              <td data-value="ACME and Company Incorporated Really Really long Name" class="org">ACME and Company Incorporated Really Really long Name</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$5.51</td>
+              <td name="invoice_total" data-value="28.46" class="invoice_total amount">$28.46</td>
+              <td style="display: none;" name="amount_due" data-value="28.46" class="amount_due amount">$28.46</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-07-13" class="date">13 Jul 2010</td>
+              <td data-value="333" class="invoice-id"><a title="Invoice 333" alt="333" href="javascript:void(0)">333</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$4.36</td>
+              <td name="invoice_total" data-value="27.31" class="invoice_total amount">$27.31</td>
+              <td style="display: none;" name="amount_due" data-value="27.31" class="amount_due amount">$27.31</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-07-13" class="date">13 Jul 2010</td>
+              <td data-value="222" class="invoice-id"><a title="Invoice 222" alt="222" href="javascript:void(0)">222</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$4.36</td>
+              <td name="invoice_total" data-value="27.31" class="invoice_total amount">$27.31</td>
+              <td style="display: none;" name="amount_due" data-value="27.31" class="amount_due amount">$27.31</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-07-08" class="date">08 Jul 2010</td>
+              <td data-value="555666" class="invoice-id"><a title="Invoice 555666" alt="555666" href="javascript:void(0)">555666</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="0.0" class="invoice_total amount">$0.00</td>
+              <td style="display: none;" name="amount_due" data-value="0.0" class="amount_due amount">$0.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-07-08" class="date">08 Jul 2010</td>
+              <td data-value="1111" class="invoice-id"><a title="Invoice 1111" alt="1111" href="javascript:void(0)">1111</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$9.60</td>
+              <td name="invoice_total" data-value="49.6" class="invoice_total amount">$49.60</td>
+              <td style="display: none;" name="amount_due" data-value="49.6" class="amount_due amount">$49.60</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-06-24" class="date">24 Jun 2010</td>
+              <td data-value="e8" class="invoice-id"><a title="Invoice e8" alt="e8" href="javascript:void(0)">e8</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$123.21</td>
+              <td name="invoice_total" data-value="1547.11" class="invoice_total amount">$1,547.11</td>
+              <td style="display: none;" name="amount_due" data-value="1547.11" class="amount_due amount">$1,547.11</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-06-24" class="date">24 Jun 2010</td>
+              <td data-value="e5" class="invoice-id"><a title="Invoice e5" alt="e5" href="javascript:void(0)">e5</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$123.21</td>
+              <td name="invoice_total" data-value="1547.11" class="invoice_total amount">$1,547.11</td>
+              <td style="display: none;" name="amount_due" data-value="1547.11" class="amount_due amount">$1,547.11</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-06-24" class="date">24 Jun 2010</td>
+              <td data-value="e4" class="invoice-id"><a title="Invoice e4" alt="e4" href="javascript:void(0)">e4</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$76,021.38</td>
+              <td name="invoice_total" data-value="476153.88" class="invoice_total amount">$476,153.88</td>
+              <td style="display: none;" name="amount_due" data-value="476153.88" class="amount_due amount">$476,153.88</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-06-24" class="date">24 Jun 2010</td>
+              <td data-value="e3" class="invoice-id"><a title="Invoice e3" alt="e3" href="javascript:void(0)">e3</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$76,021.38</td>
+              <td name="invoice_total" data-value="476153.88" class="invoice_total amount">$476,153.88</td>
+              <td style="display: none;" name="amount_due" data-value="476153.88" class="amount_due amount">$476,153.88</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-06-24" class="date">24 Jun 2010</td>
+              <td data-value="e2" class="invoice-id"><a title="Invoice e2" alt="e2" href="javascript:void(0)">e2</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$76,021.38</td>
+              <td name="invoice_total" data-value="476153.88" class="invoice_total amount">$476,153.88</td>
+              <td style="display: none;" name="amount_due" data-value="476153.88" class="amount_due amount">$476,153.88</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-06-21" class="date">21 Jun 2010</td>
+              <td data-value="asdf" class="invoice-id"><a title="Invoice asdf" alt="asdf" href="javascript:void(0)">asdf</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$5.70</td>
+              <td name="invoice_total" data-value="35.7" class="invoice_total amount">$35.70</td>
+              <td style="display: none;" name="amount_due" data-value="35.7" class="amount_due amount">$35.70</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-06-16" class="date">16 Jun 2010</td>
+              <td data-value="asdf" class="invoice-id"><a title="Invoice asdf" alt="asdf" href="javascript:void(0)">asdf</a></td>
+              <td data-value="ACME Inc." class="org">ACME Inc.</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$3.80</td>
+              <td name="invoice_total" data-value="23.8" class="invoice_total amount">$23.80</td>
+              <td style="display: none;" name="amount_due" data-value="23.8" class="amount_due amount">$23.80</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-05-13" class="date">13 May 2010</td>
+              <td data-value="test-123" class="invoice-id"><a title="Invoice test-123" alt="test-123" href="javascript:void(0)">test-123</a></td>
+              <td data-value="Client #108" class="org">Client #108</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="94.0" class="invoice_total amount">$94.00</td>
+              <td style="display: none;" name="amount_due" data-value="94.0" class="amount_due amount">$94.00</td>
+            </tr>
+            <tr class="invoice pastdue">
+              <td data-value="pastdue" class="status">
+                <span></span>
+                Past Due
+              </td>
+              <td data-value="2010-05-13" class="date">13 May 2010</td>
+              <td data-value="99012" class="invoice-id"><a title="Invoice 99012" alt="99012" href="javascript:void(0)">99012</a></td>
+              <td data-value="Client #103" class="org">Client #103</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="40.0" class="invoice_total amount">$40.00</td>
+              <td style="display: none;" name="amount_due" data-value="40.0" class="amount_due amount">$40.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-05-13" class="date">13 May 2010</td>
+              <td data-value="55" class="invoice-id"><a title="Invoice 55" alt="55" href="javascript:void(0)">55</a></td>
+              <td data-value="Client #103" class="org">Client #103</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="100.0" class="invoice_total amount">$100.00</td>
+              <td style="display: none;" name="amount_due" data-value="100.0" class="amount_due amount">$100.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-05-13" class="date">13 May 2010</td>
+              <td data-value="3123" class="invoice-id"><a title="Invoice 3123" alt="3123" href="javascript:void(0)">3123</a></td>
+              <td data-value="Client #106" class="org">Client #106</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="2.0" class="invoice_total amount">$2.00</td>
+              <td style="display: none;" name="amount_due" data-value="2.0" class="amount_due amount">$2.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-05-13" class="date">13 May 2010</td>
+              <td data-value="2" class="invoice-id"><a title="Invoice 2" alt="2" href="javascript:void(0)">2</a></td>
+              <td data-value="Client #1" class="org">Client #1</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="30.0" class="invoice_total amount">$30.00</td>
+              <td style="display: none;" name="amount_due" data-value="30.0" class="amount_due amount">$30.00</td>
+            </tr>
+            <tr class="draft invoice">
+              <td data-value="draft" class="status">
+                <span></span>
+                Draft
+              </td>
+              <td data-value="2010-04-17" class="date">17 Apr 2010</td>
+              <td data-value="from template" class="invoice-id"><a title="Invoice from template" alt="from template" href="javascript:void(0)">from template</a></td>
+              <td data-value="Aissac" class="org">Aissac</td>
+              <td name="amount_paid" data-value="0.0" class="amount_paid amount">$0.00</td>
+              <td style="display: none;" name="tax_total" class="amount">$0.00</td>
+              <td name="invoice_total" data-value="50.0" class="invoice_total amount">$50.00</td>
+              <td style="display: none;" name="amount_due" data-value="50.0" class="amount_due amount">$50.00</td>
+            </tr>
+
+          <tr class="total">
+            <td colspan="4" class="total">&nbsp;</td>
+            <td name="amount_paid" class="amount">
+            </td>
+            <td style="display: none;" name="tax_total" class="amount">
+            </td>
+            <td name="invoice_total" class="amount">
+              $1,441,309.98
+            </td>
+            <td style="display: none;" name="amount_due" class="amount">
+              $1,441,309.98
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </body>
+</html>
